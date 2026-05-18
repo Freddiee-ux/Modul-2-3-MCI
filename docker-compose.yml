@@ -1,0 +1,117 @@
+x-airflow-common: &airflow-common
+  build: .
+  environment:
+    &airflow-common-env
+    AIRFLOW__CORE__EXECUTOR: LocalExecutor
+    AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres/airflow
+    AIRFLOW__CORE__FERNET_KEY: ''
+    AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION: 'true'
+    AIRFLOW__CORE__LOAD_EXAMPLES: 'false'
+    AIRFLOW__API__AUTH_BACKENDS: 'airflow.api.auth.backend.basic_auth'
+    ORDERS_API_URL: 'http://96.9.212.102:8000/orders'
+    CLICKHOUSE_HOST: 'clickhouse'
+    CLICKHOUSE_PORT: '9000'
+    CLICKHOUSE_HTTP_PORT: '8123'
+    CLICKHOUSE_USER: 'default'
+    CLICKHOUSE_PASSWORD: ''
+    CLICKHOUSE_DATABASE: 'mci2026'
+    CLICKHOUSE_TABLE: 'orders'
+    DATA_LAKE_PATH: '/opt/airflow/data_lake'
+  volumes:
+    - ./dags:/opt/airflow/dags
+    - ./data_lake:/opt/airflow/data_lake
+    - airflow-logs:/opt/airflow/logs
+    - airflow-plugins:/opt/airflow/plugins
+  depends_on:
+    postgres:
+      condition: service_healthy
+
+services:
+
+  postgres:
+    image: postgres:15
+    container_name: mci2026_postgres
+    environment:
+      POSTGRES_USER: airflow
+      POSTGRES_PASSWORD: airflow
+      POSTGRES_DB: airflow
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "airflow"]
+      interval: 10s
+      retries: 5
+      start_period: 5s
+    restart: always
+
+  airflow-init:
+    <<: *airflow-common
+    container_name: mci2026_airflow_init
+    command: bash -c "airflow db migrate && airflow users create --username admin --firstname Admin --lastname MCI2026 --role Admin --email admin@mci2026.com --password admin"
+    restart: on-failure
+
+  airflow-webserver:
+    <<: *airflow-common
+    container_name: mci2026_airflow_webserver
+    command: webserver
+    ports:
+      - "8080:8080"
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+    restart: always
+    depends_on:
+      airflow-init:
+        condition: service_completed_successfully
+      clickhouse:
+        condition: service_healthy
+
+  airflow-scheduler:
+    <<: *airflow-common
+    container_name: mci2026_airflow_scheduler
+    command: scheduler
+    restart: always
+    depends_on:
+      airflow-init:
+        condition: service_completed_successfully
+      clickhouse:
+        condition: service_healthy
+
+  clickhouse:
+    image: clickhouse/clickhouse-server:23.8
+    container_name: mci2026_clickhouse
+    ports:
+      - "8123:8123"
+      - "9000:9000"
+    volumes:
+      - clickhouse-data:/var/lib/clickhouse
+    ulimits:
+      nofile:
+        soft: 262144
+        hard: 262144
+    healthcheck:
+      test: ["CMD-SHELL", "wget --spider -q http://localhost:8123/ping || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
+    restart: always
+
+  metabase:
+    image: metabase/metabase:latest
+    container_name: mci2026_metabase
+    ports:
+      - "3000:3000"
+    depends_on:
+      clickhouse:
+        condition: service_healthy
+    restart: always
+
+volumes:
+  postgres-data:
+  airflow-logs:
+  airflow-plugins:
+  clickhouse-data:

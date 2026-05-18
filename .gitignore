@@ -1,0 +1,17 @@
+# Data lake (file sementara, jangan di-push)
+data_lake/*.parquet
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.env
+
+# Airflow
+airflow.cfg
+airflow.db
+logs/
+
+# OS
+.DS_Store
+Thumbs.db

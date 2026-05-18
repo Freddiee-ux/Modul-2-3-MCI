@@ -1,0 +1,7 @@
+apache-airflow==2.8.1
+requests==2.31.0
+pandas==2.1.4
+clickhouse-connect==0.7.0
+clickhouse-driver==0.2.7
+pyarrow==14.0.2
+fastparquet==2023.10.1
