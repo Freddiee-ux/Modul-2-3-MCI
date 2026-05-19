@@ -250,6 +250,9 @@ LIMIT 100;
 
 ## Dashboard Metabase
 
+
+<img width="829" height="1024" alt="1779152501907-b18c72d1-7652-492e-9b9f-824f11b0f7c1_1" src="https://github.com/user-attachments/assets/3a013053-0ea9-4d0b-9410-af459651c94e" />
+
 Dashboard Metabase yang dibuat berisi beberapa kartu analitik:
 
 | Visualisasi | Tipe Chart | Tujuan |
