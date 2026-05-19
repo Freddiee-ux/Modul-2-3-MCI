@@ -4,9 +4,8 @@
 
 | Nama | NRP |
 |------|-----|
-| [Nama 1] | [NRP 1] |
-| [Nama 2] | [NRP 2] |
-| [Nama 3] | [NRP 3] |
+| Ferdian Ardra Hafizhan | 5025241033 |
+| Muhammad Hilbran Akmal Abrar | 5025241052 |
 
 ## Ringkasan
 
