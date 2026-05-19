@@ -358,8 +358,7 @@ Each visualization is created as one Metabase Question.
 | Business Summary             | Total Orders                       |
 | Business Summary             | Product Line Items                 |
 | Business Summary             | Average Basket Size                |
-| Business Summary             | Product Reorder Rate (%)           |
-| Business Summary             | Peak Order Day                     |
+| Business Summary             | Product Reorder Rate (%)           |                   
 | Ordering Time Opportunity    | Orders by Hour of Day              |
 | Ordering Time Opportunity    | Orders by Day of Week              |
 | Ordering Time Opportunity    | Top Ordering Time Windows          |
@@ -369,8 +368,6 @@ Each visualization is created as one Metabase Question.
 | Basket Size Analysis         | Largest Basket Orders              |
 | Product Performance          | Top 10 Purchased Products          |
 | Product Performance          | Product Distribution by Department |
-| Product Reorder Opportunity  | Top Reordered Products             |
-| Product Reorder Opportunity  | Reorder Rate by Department         |
 
 ---
 
@@ -384,7 +381,6 @@ The dashboard is designed to answer the following business questions:
 4. How strong is the product reorder behavior?
 5. What are the most frequently purchased products?
 6. Which departments dominate product purchases?
-7. Which products and departments show strong reorder potential?
 
 ### Dashboard Title
 
