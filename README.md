@@ -624,4 +624,3 @@ The pipeline extracts order data from a REST API, stores it as Parquet files, pr
 
 The final dashboard provides insights into order behavior, reorder patterns, basket size, and product performance. These insights can support business decisions related to campaign timing, customer retention, product recommendations, and inventory planning.
 
-````
