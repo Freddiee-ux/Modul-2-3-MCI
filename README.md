@@ -180,11 +180,9 @@ fetch_data → process_data → validate_data
 
 ### DAG Screenshot
 
-Add your Airflow DAG screenshot here:
 
-```markdown
-![Airflow DAG](docs/screenshots/miage.png)
-```
+<img width="2868" height="1098" alt="image" src="https://github.com/user-attachments/assets/36b4b53d-8e75-47ed-81c9-0ba8f92ac6ca" />
+
 
 ---
 
@@ -413,17 +411,14 @@ E-Commerce Order Behavior Analytics Dashboard
 
 The first page shows the executive overview and ordering time analysis. It includes total orders, product line items, product reorder rate, average basket size, orders by day of week, orders by hour of day, and top ordering time windows.
 
-```markdown
-![Dashboard Page 1](docs/screenshots/dashboard_page_1.png)
-```
+<img width="722" height="696" alt="image" src="https://github.com/user-attachments/assets/3e161747-b686-4b9c-95e0-6edfcd58f056" />
 
 ### Page 2: Reorder Behavior, Basket Size, and Product Performance
 
 The second page shows reorder behavior, basket size category, largest basket orders, top purchased products, and product distribution by department.
 
-```markdown
-![Dashboard Page 2](docs/screenshots/dashboard_page_2.png)
-```
+<img width="734" height="786" alt="image" src="https://github.com/user-attachments/assets/7d5914ca-369e-40a7-b0f7-45484f8ff4d8" />
+
 
 ---
 
