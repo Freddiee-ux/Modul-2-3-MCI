@@ -426,63 +426,34 @@ The second page shows reorder behavior, basket size category, largest basket ord
 
 Based on the Metabase dashboard, several insights can be identified:
 
-### 1. Order and Product Volume
+Berikut **key insights singkat** yang bisa kamu masukkan ke README:
 
-The dataset contains 200 unique orders and 2,405 product line items. This means that each order contains multiple products.
+## Key Insights
 
-### 2. Average Basket Size
+### 1. **The dataset contains 200 unique orders and 2,405 product line items.**
+   This shows that each order contains multiple products, with an average basket size of **12.02 products per order**.
 
-The average basket size is 12.02 products per order. This indicates that customers tend to purchase multiple items in a single transaction.
+### 2. **Product reorder behavior is strong.**
+   The product reorder rate reaches **61.12%**, meaning more than half of the product line items are repeat purchases.
 
-### 3. Product Reorder Behavior
+### 3. **Monday is the peak order day.**
+   Order activity is highest on Monday, which can be used as a reference for campaign scheduling or promotional timing.
 
-The product reorder rate is 61.12%. This means that more than half of the product line items are reordered products, indicating strong repeat purchase behavior at the product level.
+### 4. **Customers are more active during daytime and afternoon hours.**
+   The time-based order pattern indicates that order activity is concentrated during active daily hours.
 
-### 4. Peak Order Day
+### 5. **Large and medium baskets dominate the order pattern.**
+   Many orders contain multiple products, indicating potential opportunities for bundling and cross-selling strategies.
 
-Monday is the peak order day, with 49 orders. This suggests that users are more active in placing orders at the beginning of the week.
+### 6. **Product demand is dominated by daily grocery categories.**
+   Products from departments such as **produce**, **dairy eggs**, and **snacks** appear frequently, making them important categories for inventory planning.
 
-### 5. Peak Order Time
-
-The order activity by hour shows that users are more active during daytime and afternoon periods. This insight can be used to support campaign scheduling and push notification timing.
-
-### 6. Product Performance
-
-The dashboard shows that products such as Banana, Bag of Organic Bananas, and Organic Avocado appear among the most frequently purchased products.
-
-### 7. Department Performance
-
-The product distribution by department shows that `produce`, `dairy eggs`, and `snacks` are among the dominant departments in the dataset.
+### 7. **Top purchased products can support recommendation strategy.**
+   Frequently purchased products such as **Banana**, **Bag of Organic Bananas**, and other grocery items can be used for product recommendation, bundling, or promotion planning.
 
 ---
 
-## 16. Business Recommendations
-
-Based on the dashboard insights, several recommendations can be made:
-
-### 1. Campaign Timing
-
-Since Monday is the peak order day, the company can schedule promotional campaigns or push notifications at the beginning of the week.
-
-### 2. Reorder-Based Retention Strategy
-
-The high product reorder rate indicates an opportunity to build reorder reminders or personalized recommendations for frequently reordered products.
-
-### 3. Basket Size Optimization
-
-With an average basket size of 12.02 products per order, the company can explore bundling strategies and cross-selling recommendations.
-
-### 4. Inventory Planning
-
-High-performing products and dominant departments should be prioritized in inventory planning to reduce the risk of stockouts.
-
-### 5. Product Recommendation
-
-Frequently purchased and frequently reordered products can be used as candidates for recommendation systems or promotional bundles.
-
----
-
-## 17. How to Run the Project
+## 16. How to Run the Project
 
 ### Step 1: Clone Repository
 
@@ -583,7 +554,7 @@ sql/metabase_queries.sql
 
 ---
 
-## 18. SQL Files
+## 17. SQL Files
 
 ### clickhouse_ddl.sql
 
@@ -599,7 +570,7 @@ This file contains analytical SQL queries used to create Metabase Questions and 
 
 ---
 
-## 19. Challenges and Solutions
+## 18. Challenges and Solutions
 
 | Challenge                                            | Solution                                                                |
 | ---------------------------------------------------- | ----------------------------------------------------------------------- |
@@ -611,7 +582,7 @@ This file contains analytical SQL queries used to create Metabase Questions and 
 
 ---
 
-## 20. Conclusion
+## 19. Conclusion
 
 This project successfully implements an end-to-end pipeline orchestration and visualization workflow using Apache Airflow, ClickHouse, and Metabase.
 
