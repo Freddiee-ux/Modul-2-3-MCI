@@ -105,8 +105,8 @@ MCI2026_Task2_Kelompok<NomorKelompok>/
 │   ├── data_quality_checks.sql
 │   └── metabase_queries.sql
 ├── docs/
-│   └── screenshots/
-│       └── dashboard.png
+│   |──dashboard.pdf
+│   └──image.png
 ├── data_lake/
 ├── docker-compose.yml
 ├── Dockerfile
