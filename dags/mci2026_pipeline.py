@@ -74,38 +74,61 @@ def task_process_data(**context):
     return stats
 
 
-def task_validate_data(**context):
-    """
-    Task 3: Validasi data berhasil masuk ke ClickHouse
-    """
+def validate_data():
     import clickhouse_connect
 
-    host      = os.getenv('CLICKHOUSE_HOST',      'clickhouse')
-    port      = int(os.getenv('CLICKHOUSE_HTTP_PORT', '8123'))
-    user      = os.getenv('CLICKHOUSE_USER',      'default')
-    password  = os.getenv('CLICKHOUSE_PASSWORD',  '')
-    database  = os.getenv('CLICKHOUSE_DATABASE',  'mci2026')
-    table     = os.getenv('CLICKHOUSE_TABLE',     'orders')
-
-    logger.info("[validate_data] Connecting ke ClickHouse untuk validasi...")
-
     client = clickhouse_connect.get_client(
-        host=host, port=port, username=user, password=password
+        host="clickhouse",
+        port=8123,
+        username="default",
+        password="",
+        database="mci2026"
     )
 
-    # 1. Cek total row
-    result    = client.query(f'SELECT count() FROM {database}.{table}')
-    row_count = result.first_row[0]
+    orders_count = client.query(
+        "SELECT count() FROM mci2026.fact_orders"
+    ).first_row[0]
 
-    if row_count == 0:
-        raise ValueError(f"❌ Validasi GAGAL: tabel {database}.{table} kosong!")
+    products_count = client.query(
+        "SELECT count() FROM mci2026.fact_order_products"
+    ).first_row[0]
 
-    # 2. Sample data untuk log
-    sample = client.query(f'SELECT * FROM {database}.{table} LIMIT 3')
-    logger.info(f"[validate_data] Sample data: {sample.result_rows}")
+    duplicate_orders = client.query(
+        """
+        SELECT count() - countDistinct(order_id)
+        FROM mci2026.fact_orders
+        """
+    ).first_row[0]
 
-    logger.info(f"[validate_data] ✅ Validasi berhasil! Total baris: {row_count}")
-    return row_count
+    invalid_day = client.query(
+        """
+        SELECT countIf(order_dow < 0 OR order_dow > 6)
+        FROM mci2026.fact_orders
+        """
+    ).first_row[0]
+
+    invalid_hour = client.query(
+        """
+        SELECT countIf(order_hour_of_day < 0 OR order_hour_of_day > 23)
+        FROM mci2026.fact_orders
+        """
+    ).first_row[0]
+
+    if orders_count == 0:
+        raise ValueError("fact_orders kosong.")
+
+    if duplicate_orders > 0:
+        raise ValueError(f"Terdapat duplicate order_id: {duplicate_orders}")
+
+    if invalid_day > 0:
+        raise ValueError(f"Terdapat order_dow tidak valid: {invalid_day}")
+
+    if invalid_hour > 0:
+        raise ValueError(f"Terdapat order_hour_of_day tidak valid: {invalid_hour}")
+
+    print(f"Validation passed.")
+    print(f"Total orders: {orders_count}")
+    print(f"Total order products: {products_count}")
 
 
 # ============================================================
@@ -132,7 +155,7 @@ with DAG(
 
     validate = PythonOperator(
         task_id         = 'validate_data',
-        python_callable = task_validate_data,
+        python_callable = validate_data,
     )
 
     # Alur: fetch_data → process_data → validate_data

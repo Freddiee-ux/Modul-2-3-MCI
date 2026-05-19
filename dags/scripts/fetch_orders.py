@@ -96,4 +96,4 @@ def run(api_url: str = API_URL, output_dir: str = DATA_LAKE_PATH) -> str:
 if __name__ == '__main__':
     logging.basicConfig(level=logging.INFO)
     path = run()
-    print(f"\n✅ Selesai! File tersimpan di: {path}")
+    print(f"\n Selesai! File tersimpan di: {path}")

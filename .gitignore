@@ -1,17 +1,47 @@
-# Data lake (file sementara, jangan di-push)
-data_lake/*.parquet
+# Data lake and runtime outputs
+data_lake/
+data_lake_bad/
+*.parquet.tmp
 
-# Python
+# Python cache and local environments
 __pycache__/
-*.pyc
-*.pyo
-.env
+*.py[cod]
+*$py.class
+.python-version
+.venv/
+venv/
+env/
+ENV/
 
-# Airflow
+# Environment and secrets
+.env
+.env.*
+!.env.example
+
+# Airflow local files
 airflow.cfg
 airflow.db
 logs/
+airflow-logs/
+airflow-plugins/
+plugins/
 
-# OS
+# Docker / local runtime
+*.log
+docker-compose.override.yml
+
+# Test and tooling cache
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# OS / editor files
 .DS_Store
 Thumbs.db
+desktop.ini
+*.swp
+*.swo
+.idea/
+.vscode/
