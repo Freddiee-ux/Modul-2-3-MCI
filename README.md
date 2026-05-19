@@ -1,13 +1,3 @@
-Siap, bro. Berikut **draft lengkap `README.md`** untuk repository kamu. Formatnya sudah dibuat seperti dokumentasi portofolio/Médium style, sesuai requirement tugas: DAG Airflow, ClickHouse, SQL, Metabase Questions, dan Dashboard.
-
-Kamu bisa langsung copy ke file:
-
-```text
-README.md
-```
-
----
-
 ````markdown
 # MCI2026 Task 2 - E-Commerce Order Analytics Pipeline
 
@@ -635,18 +625,3 @@ The pipeline extracts order data from a REST API, stores it as Parquet files, pr
 The final dashboard provides insights into order behavior, reorder patterns, basket size, and product performance. These insights can support business decisions related to campaign timing, customer retention, product recommendations, and inventory planning.
 
 ````
-
----
-
-## Catatan kecil dari dashboard PDF kamu
-
-Dashboard PDF yang kamu upload sudah menampilkan struktur utama dengan **Executive Overview**, **Time-Based Order Pattern**, **Reorder Behavior**, **Basket Size Analysis**, dan **Product Performance**. Di halaman pertama, dashboard menampilkan KPI seperti `Total Orders = 200`, `Total Product Line Items = 2,405`, `Product Reorder Rate = 61.12%`, serta `Average Basket Size = 12.02`. Halaman kedua menampilkan analisis reorder, basket size, largest basket orders, top purchased products, dan product distribution by department. :contentReference[oaicite:0]{index=0}
-
-Saran tambahan: sebelum submit, simpan screenshot dashboard dari PDF menjadi:
-
-```text
-docs/screenshots/dashboard_page_1.png
-docs/screenshots/dashboard_page_2.png
-````
-
-Lalu pastikan link gambar di README sudah sesuai.
