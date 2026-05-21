@@ -1,5 +1,5 @@
 
-# MCI2026 Task 2 - E-Commerce Order Analytics Pipeline
+# E-Commerce Order Analytics Pipeline
 
 ## 1. Project Overview
 
